@@ -1,7 +1,7 @@
 import { ChakraProvider, theme, Box, Center, Text, VStack, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-
+import './App.css'
 
 
 const MotionBox = motion(Box)
@@ -9,43 +9,34 @@ const MotionBox = motion(Box)
 
 export const App = () => {
 
+  const style: React.CSSProperties = {
+    height: "100vh",
+    background: "linear-gradient(to right, #373b44, #4286f4)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 
-  const [anime, setAnime] = useState(false);
-
-  const variants = {
-    visible: { opacity: 100 },
-    hidden: { opacity: 0 },
-  }
-
-  const handle = () => {
-    setAnime(!anime)
   }
 
   return (
     <ChakraProvider theme={theme}>
-      <Center mt={20}>
-        <VStack>
-          <motion.div
 
-            animate={{ y: [null, 400], x: 800, ini }}
-            transition={{ duration: 2, times: [0, 0.2, 1] }}
-            initial={anime}
-          >
-            <Button onClick={handle} >Animation</Button>
-
-
-          </motion.div>
-
-        </VStack>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-        >
-          <Box h={"20px"} bg="red" w="420px"></Box>
-        </motion.div>
-      </Center>
+      <VStack style={style}>
+        <Center h={200} w={600} >
+          <VStack as={motion.div}
+          animate={{opacity: 0.2, marginTop:100, rotateZ: 360}}>
+            <Text as={motion.h1}  color={"white"} fontSize={"2xl"}
+            animate={{fontSize: "40px"}}
+            >
+              Bem vindo a pizzaria Buzz
+            </Text>
+            <Button as={motion.button}
+            animate={{scale: 1.2}}>
+              Fazer pedido
+            </Button>
+          </VStack>
+        </Center>
+      </VStack>
 
     </ChakraProvider >
   );
